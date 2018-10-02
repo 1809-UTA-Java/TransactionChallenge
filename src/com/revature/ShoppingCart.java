@@ -8,18 +8,14 @@ import java.util.Scanner;
 class ShoppingCart implements Runnable {
 
     String fileName = "grocerystore.txt";
+    ArrayList<String> myCollection = new ArrayList<>();
 
     @Override
     public void run() {
         Scanner sc = new Scanner(fileName);
-        FileWriter fw = new FileWriter(fileName, false);
-
-        ArrayList<String> myCollection = new ArrayList<>();
 
         String firstLine = sc.nextLine();
         myCollection.add(firstLine);
-
-
 
         try(FileWriter fw = new FileWriter(fileName, false)) {
             while(sc.hasNextLine()) {
