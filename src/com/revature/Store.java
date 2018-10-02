@@ -9,5 +9,11 @@ class Store {
     
         cart1.start();
         cart2.start();
+
+        cart1.join();
+        cart2.join();
+
+        System.out.println(cart1.myCollection.toString());
+        System.out.println(cart2.myCollection.toString());
     } 
 }
