@@ -3,6 +3,8 @@
 
 ### Eclipse ###
 
+*.txt
+
 .metadata
 bin/
 tmp/
