@@ -1,0 +1,11 @@
+butter
+bread
+tea
+sauce
+eggs
+pineapple
+cornmeal
+cherries
+flour
+milk
+

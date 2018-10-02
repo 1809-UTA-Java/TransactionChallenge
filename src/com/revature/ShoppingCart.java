@@ -1,16 +1,16 @@
 package com.revature;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class ShoppingCart extends Thread {
-    String fileName = "grocerystore.txt";
-    private ArrayList<String> myCollection = new ArrayList<>();;
-    /*public ShoppingCart() {
-        myCollection = 
-    }*/
+    static volatile File file = new File ("grocerystore.txt");
+    private ArrayList<String> myCollection = new ArrayList<>();
 
     public ArrayList<String> getCollection () {
         return myCollection;
@@ -18,30 +18,34 @@ class ShoppingCart extends Thread {
 
     @Override
     public void run() {
-        Scanner sc = new Scanner(fileName);
-
-        synchronized(this) {
-
-            try {
-                this.wait();
-            } catch (InterruptedException ex) {
+        while (true) {
+            try (Scanner sc = new Scanner(file)) {
+                String firstLine = null;
+                    if (sc.hasNextLine()) {
+                        firstLine = sc.nextLine();
+                    }
+                    else {
+                        break;
+                    }
+                    myCollection.add(firstLine);
+                    file = ShoppingCart.writeToFile(file, sc);
+            } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
-
-            String firstLine = sc.nextLine();
-            myCollection.add(firstLine);
-
-            try(FileWriter fw = new FileWriter(fileName, false)) {
-                while(sc.hasNextLine()) {
-                    fw.write(sc.nextLine());
-                }
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-            this.notify();
         }
+        
+    }
 
-        sc.close();
+    static private synchronized File writeToFile(File file, Scanner sc) {
+        try(FileWriter fw = new FileWriter(file, false)) {
+            while(sc.hasNextLine()) {
+                fw.write(sc.nextLine()+"\n");
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        //this.notify();
+        return file;
     }
 
 }
