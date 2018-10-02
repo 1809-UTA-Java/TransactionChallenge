@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class ShoppingCart implements Runnable {
+class ShoppingCart extends Thread {
     String fileName = "grocerystore.txt";
-    public ArrayList<String> myCollection;
-    public ShoppingCart() {
-        myCollection = new ArrayList<>();
+    private ArrayList<String> myCollection = new ArrayList<>();;
+    /*public ShoppingCart() {
+        myCollection = 
+    }*/
+
+    public ArrayList<String> getCollection () {
+        return myCollection;
     }
 
     @Override
