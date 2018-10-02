@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class ShoppingCart implements Runnable {
-
     String fileName = "grocerystore.txt";
     ArrayList<String> myCollection = new ArrayList<>();
 
@@ -14,9 +13,12 @@ class ShoppingCart implements Runnable {
     public void run() {
         Scanner sc = new Scanner(fileName);
 
+        ArrayList<String> myCollection = new ArrayList<>();
+
         String firstLine = sc.nextLine();
         myCollection.add(firstLine);
 
+        this.wait();
         try(FileWriter fw = new FileWriter(fileName, false)) {
             while(sc.hasNextLine()) {
                 fw.write(sc.nextLine());
@@ -24,6 +26,7 @@ class ShoppingCart implements Runnable {
         } catch(IOException e) {
             e.printStackTrace();
         }
+        this.notify();
 
         sc.close();
     }
