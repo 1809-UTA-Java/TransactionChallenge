@@ -1,0 +1,7 @@
+apple
+bread
+eggs
+carrots
+orange juice
+cheese
+milk
