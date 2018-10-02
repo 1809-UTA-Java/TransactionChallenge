@@ -1,13 +1,15 @@
 package com.revature.Transaction;
 
-/**
- * Hello world!
- *
- */
+import com.revature.fileManager.*;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	String file = "Groceries.txt";
+    	
+    	TransactionReader fm = new TransactionReader();
+    	
+    	System.out.println(fm.readFile(file));
     }
 }
