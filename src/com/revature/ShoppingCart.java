@@ -22,14 +22,15 @@ class ShoppingCart extends Thread {
 
         synchronized(this) {
 
-            String firstLine = sc.nextLine();
-            myCollection.add(firstLine);
-
             try {
                 this.wait();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+
+            String firstLine = sc.nextLine();
+            myCollection.add(firstLine);
+
             try(FileWriter fw = new FileWriter(fileName, false)) {
                 while(sc.hasNextLine()) {
                     fw.write(sc.nextLine());
