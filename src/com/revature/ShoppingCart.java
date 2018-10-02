@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 class ShoppingCart implements Runnable {
     String fileName = "grocerystore.txt";
+    ArrayList<String> myCollection = new ArrayList<>();
 
     @Override
     public void run() {
