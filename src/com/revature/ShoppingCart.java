@@ -17,7 +17,11 @@ class ShoppingCart implements Runnable {
         String firstLine = sc.nextLine();
         myCollection.add(firstLine);
 
-        this.wait();
+        try {
+            this.wait();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
         try(FileWriter fw = new FileWriter(fileName, false)) {
             while(sc.hasNextLine()) {
                 fw.write(sc.nextLine());
