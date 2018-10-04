@@ -25,7 +25,7 @@ public class InventoryGenerator {
         File inputFile = new File("junk/"+(fileName+=".txt"));
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(inputFile));
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10; i++) {
                 bw.write("abc"+i + System.getProperty("line.separator"));
             }
             bw.close();
